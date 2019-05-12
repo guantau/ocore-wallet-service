@@ -56,7 +56,8 @@ exports.initial_witnesses = [
 ];
 */
 exports.initial_peers = [
-	'wss://obyte.org/bb'
+	'wss://obyte.org/bb',
+	'wss://hub.obytechina.org/bb'
 ];
 
 exports.trustedRegistries = {
