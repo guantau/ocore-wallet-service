@@ -31,7 +31,7 @@ var config = {
     },
   },
   blockchainExplorerOpts: {
-    hubUrl: 'ws://127.0.0.1:3030',
+    hubUrl: 'ws://localhost:3030',
   },
   pushNotificationsOpts: {
     templatePath: './lib/templates',

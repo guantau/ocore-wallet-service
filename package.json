@@ -2,7 +2,7 @@
   "name": "ocore-wallet-service",
   "description": "A service for Mutisig HD OByte Wallets",
   "author": "guantau",
-  "version": "8.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "keywords": [
     "obyte",
