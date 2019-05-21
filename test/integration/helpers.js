@@ -503,6 +503,11 @@ const hash_placeholder = "--------------------------------------------"; // 256 
 const sig_placeholder = "----------------------------------------------------------------------------------------"; // 88 bytes
 
 helpers.composeJoint = function (txOpts) {
+  var opts = {
+    app: 'payment',
+    params: txOpts
+  }
+
   helpers._utxos.should.not.be.empty;
 
   var utxo = helpers._utxos.find(function(item) {
@@ -547,16 +552,16 @@ helpers.composeJoint = function (txOpts) {
   objUnit.payload_commission = ObjectLength.getTotalPayloadSize(objUnit);
   objUnit.timestamp = Math.round(Date.now()/1000);
 
-  txOpts.unit = objUnit;
-  txOpts.signingInfo = {};
-  txOpts.signingInfo[utxo.address] = {
+  opts.unit = objUnit;
+  opts.signingInfo = {};
+  opts.signingInfo[utxo.address] = {
     walletId: utxo.walletId,
     path: utxo.path,
     signingPaths: Object.values(utxo.signingPath)
   };
-  txOpts.testRun = true;
+  opts.testRun = true;
 
-  return txOpts;
+  return opts;
 }
 
 

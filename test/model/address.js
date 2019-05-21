@@ -45,7 +45,7 @@ describe('Address', function() {
       address.walletId.should.equal('wallet-id');
       address.address.should.equal('6ERVBLCPMRFRZE25SGUL62FVFEDZ5NUH');
       address.network.should.equal('livenet');
-      address.isChange.should.equal(0);
+      address.isChange.should.equal(false);
       address.path.should.equal('m/0/0');
       address.type.should.equal('normal');
     });
@@ -58,7 +58,7 @@ describe('Address', function() {
       address.walletId.should.equal('wallet-id');
       address.address.should.equal('UL34DNO2TOOQ4SI4IKA7U2IRBQQRGXQP');
       address.network.should.equal('livenet');
-      address.isChange.should.equal(0);
+      address.isChange.should.equal(false);
       address.path.should.equal('m/0/0');
       address.type.should.equal('shared');
     });
