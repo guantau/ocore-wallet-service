@@ -141,14 +141,11 @@ describe('ExpressApp', function() {
               should.not.exist(err);
               res.statusCode.should.equal(200);
               var args = server.getBalance.getCalls()[0].args[0];
-              should.not.exist(args.twoStep);
 
-              reqOpts.url += '?twoStep=1';
               request(reqOpts, function(err, res, body) {
                 should.not.exist(err);
                 res.statusCode.should.equal(200);
                 var args = server.getBalance.getCalls()[1].args[0];
-                args.twoStep.should.equal(true);
                 done();
               });
             });
