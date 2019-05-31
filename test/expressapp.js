@@ -12,7 +12,6 @@ var Common = require('../lib/common');
 var Defaults = Common.Defaults;
 
 
-
 describe('ExpressApp', function() {
   describe('#constructor', function() {
     it('will set an express app', function() {
@@ -41,7 +40,7 @@ describe('ExpressApp', function() {
     });
 
     describe('Routes', function() {
-      var testPort = 3239;
+      var testPort = 3232;
       var testHost = 'http://127.0.0.1';
       var httpServer;
 

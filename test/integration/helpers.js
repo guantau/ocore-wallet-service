@@ -243,7 +243,8 @@ helpers.createAndJoinWallet = function(m, n, opts, cb) {
           xPubKey: pub,
           requestPubKey: copayerData.pubKey_1H_0,
           customData: "custom data " + (i + 1),
-          devicePubKey: dxpri.privateKey.toPublicKey()
+          devicePubKey: dxpri.privateKey.toPublicKey(),
+          account: 0
         });
         if (_.isBoolean(opts.supportBIP44))
           copayerOpts.supportBIP44 = opts.supportBIP44;
@@ -342,7 +343,7 @@ helpers.stubUtxos = function(server, wallet, amounts, opts, cb) {
               address: address.address,
               path: address.path,
               definition: address.definition,
-              signingPath: address.signingPath,
+              signingPaths: address.signingPaths,
               walletId: wallet.id,
               is_spent: false,
             };
@@ -366,19 +367,11 @@ helpers.stubUtxos = function(server, wallet, amounts, opts, cb) {
         };
 
         blockchainExplorer.getBalance = function(addresses, asset, cb) {
-          var balances = {};
-          balances['total'] = { base: { stable: 0, pending: 0, stable_outputs_count: 0, pending_outputs_count: 0 } };
-          addresses.forEach(function (address) {
-            balances[address] = { base: { stable: 0, pending: 0, stable_outputs_count: 0, pending_outputs_count: 0 } };
-          });
-
+          var balances = { base: { stable: 0, pending: 0, stable_outputs_count: 0, pending_outputs_count: 0 } };
           helpers._utxos.forEach(function(utxo) {
             if (addresses.includes(utxo.address) && !utxo.is_spent) {
-              balances[utxo.address][utxo.asset || 'base'][utxo.is_stable ? 'stable' : 'pending'] += utxo.amount;
-              balances[utxo.address][utxo.asset || 'base'][utxo.is_stable ? 'stable_outputs_count' : 'pending_outputs_count'] = 1;
-    
-              balances['total'][utxo.asset || 'base'][utxo.is_stable ? 'stable' : 'pending'] += utxo.amount;
-              balances['total'][utxo.asset || 'base'][utxo.is_stable ? 'stable_outputs_count' : 'pending_outputs_count'] += 1;
+              balances[utxo.asset || 'base'][utxo.is_stable ? 'stable' : 'pending'] += utxo.amount;
+              balances[utxo.asset || 'base'][utxo.is_stable ? 'stable_outputs_count' : 'pending_outputs_count'] += 1;
             }
           });
 
@@ -401,7 +394,7 @@ helpers.stubBroadcast = function() {
 };
 
 helpers.stubHistory = function(txs) {
-  blockchainExplorer.getTxHistory = function(addresses, asset, opts, cb) {
+  blockchainExplorer.getTxHistory = function(addresses, opts, cb) {
     return cb(null, txs);
   };
 };
@@ -429,13 +422,16 @@ helpers.clientSign = function(txp, xpriv, walletId) {
   var assocSigningInfo = txp.signingInfo;
   var signatures = {};
   var text_to_sign = ObjectHash.getUnitHashToSign(objUnit);
-  for (const author of objUnit.authors) {
+  for (var author of objUnit.authors) {
     var address = author.address;
     if (walletId == assocSigningInfo[address].walletId) {
-      for (const path of assocSigningInfo[address].signingPaths) {
-        var privateKey = xPrivKey.derive(assocSigningInfo[address].path).privateKey;
-        var privKeyBuf = privateKey.bn.toBuffer({ size: 32 });
-        author.authentifiers[path] = Signature.sign(text_to_sign, privKeyBuf);
+      var signingPaths = assocSigningInfo[address].signingPaths;
+      var x = xPrivKey.derive(assocSigningInfo[address].path);
+      var publicKey = x.publicKey.toBuffer().toString('base64');
+      var privateKey = x.privateKey;
+      var privKeyBuf = privateKey.bn.toBuffer({ size: 32 });
+      if (publicKey in signingPaths) {
+        author.authentifiers[signingPaths[publicKey]] = Signature.sign(text_to_sign, privKeyBuf);
       }
       signatures[address] = author.authentifiers; 
     }
@@ -503,11 +499,6 @@ const hash_placeholder = "--------------------------------------------"; // 256 
 const sig_placeholder = "----------------------------------------------------------------------------------------"; // 88 bytes
 
 helpers.composeJoint = function (txOpts) {
-  var opts = {
-    app: 'payment',
-    params: txOpts
-  }
-
   helpers._utxos.should.not.be.empty;
 
   var utxo = helpers._utxos.find(function(item) {
@@ -525,7 +516,7 @@ helpers.composeJoint = function (txOpts) {
         message_index: utxo.message_index,
         output_index: utxo.output_index
       }],
-      outputs: txOpts.outputs
+      outputs: txOpts.params.outputs
     }
   };
   objPaymentMessage.payload_hash = ObjectHash.getBase64Hash(objPaymentMessage.payload);
@@ -552,16 +543,16 @@ helpers.composeJoint = function (txOpts) {
   objUnit.payload_commission = ObjectLength.getTotalPayloadSize(objUnit);
   objUnit.timestamp = Math.round(Date.now()/1000);
 
-  opts.unit = objUnit;
-  opts.signingInfo = {};
-  opts.signingInfo[utxo.address] = {
+  txOpts.unit = objUnit;
+  txOpts.signingInfo = {};
+  txOpts.signingInfo[utxo.address] = {
     walletId: utxo.walletId,
     path: utxo.path,
-    signingPaths: Object.values(utxo.signingPath)
+    signingPaths: utxo.signingPaths
   };
-  opts.testRun = true;
+  txOpts.testRun = true;
 
-  return opts;
+  return txOpts;
 }
 
 

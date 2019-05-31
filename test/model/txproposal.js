@@ -79,24 +79,7 @@ var aTXP = function() {
     coin: "obyte",
     network: "livenet",
     message: null,
-    changeAddress: {
-      coin: "obyte",
-      version: 1,
-      createdOn: 1552832662,
-      address: "4QRPWEA43LCHY2AK7LM2MCUHFHEGT7HW",
-      walletId: "4e7aa1fb-4fb8-4ad0-baac-995d0cf188b9",
-      definition: [
-        "sig",
-        { pubkey: "A2FqN6O9i7OVDxauC2dbokLeot37J7DuB7YaTlh0xK0Z" }
-      ],
-      signingPath: { A2FqN6O9i7OVDxauC2dbokLeot37J7DuB7YaTlh0xK0Z: "r" },
-      isChange: true,
-      path: "m/1/33",
-      network: "livenet",
-      type: "normal",
-      hasActivity: null,
-      beRegistered: null
-    },
+    changeAddress: "4QRPWEA43LCHY2AK7LM2MCUHFHEGT7HW",
     walletM: 1,
     walletN: 1,
     requiredSignatures: 1,
@@ -116,7 +99,9 @@ var aTXP = function() {
       OXE4BG5KKSTSZI3S32DYDKWOREHOZHTN: {
         walletId: "4e7aa1fb-4fb8-4ad0-baac-995d0cf188b9",
         path: "m/1/29",
-        signingPaths: ["r"]
+        signingPaths: {
+          "A5CSvVSw1ViwV9gGBfp9Ka1B/e8LyjCUgUPHf4Vtc7Gv": "r"
+        }
       }
     },
     proposalSignature:

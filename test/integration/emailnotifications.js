@@ -169,10 +169,13 @@ describe('Email notifications', function() {
 
       helpers.stubUtxos(server, wallet, [1, 1], function() {
         var txOpts = {
-          outputs: [{
-            address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
-            amount: 0.8e8
-          }],
+          app: 'payment',
+          params: {
+            outputs: [{
+              address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
+              amount: 0.8e8
+            }]
+          }
         };
 
         helpers.createAndPublishTx(server, txOpts, TestData.copayers[0].privKey_1H_0, function(tx) {
@@ -206,10 +209,13 @@ describe('Email notifications', function() {
       };
       helpers.stubUtxos(server, wallet, [1, 1], function() {
         var txOpts = {
-          outputs: [{
-            address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
-            amount: 0.8e8
-          }],
+          app: 'payment',
+          params: {
+            outputs: [{
+              address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
+              amount: 0.8e8
+            }]
+          }
         };
         helpers.createAndPublishTx(server, txOpts, TestData.copayers[0].privKey_1H_0, function(tx) {
           setTimeout(function() {
@@ -237,10 +243,13 @@ describe('Email notifications', function() {
       };
       helpers.stubUtxos(server, wallet, [1, 1], function() {
         var txOpts = {
-          outputs: [{
-            address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
-            amount: 0.8e8
-          }],
+          app: 'payment',
+          params: {
+            outputs: [{
+              address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
+              amount: 0.8e8
+            }]
+          }
         };
 
         var txp;
@@ -301,10 +310,13 @@ describe('Email notifications', function() {
     it('should notify copayers a tx has been finally rejected', function(done) {
       helpers.stubUtxos(server, wallet, 1, function() {
         var txOpts = {
-          outputs: [{
-            address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
-            amount: 0.8e8
-          }],
+          app: 'payment',
+          params: {
+            outputs: [{
+              address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
+              amount: 0.8e8
+            }]
+          }
         };
 
         var txpId;
@@ -540,10 +552,13 @@ describe('Email notifications', function() {
       }, function(err) {
         helpers.stubUtxos(server, wallet, 1, function() {
           var txOpts = {
-            outputs: [{
-              address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
-              amount: 0.8e8
-            }],
+            app: 'payment',
+            params: {
+              outputs: [{
+                address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
+                amount: 0.8e8
+              }]
+            }
           };
           helpers.createAndPublishTx(server, txOpts, TestData.copayers[0].privKey_1H_0, function(tx) {
             setTimeout(function() {
@@ -640,10 +655,13 @@ describe('Email notifications', function() {
       it('should NOT notify copayers a new tx proposal has been created', function(done) {
         helpers.stubUtxos(server, wallet, [1, 1], function() {
           var txOpts = {
-            outputs: [{
-              address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
-              amount: 0.8e8
-            }],
+            app: 'payment',
+            params: {
+              outputs: [{
+                address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
+                amount: 0.8e8
+              }]
+            }
           };
           helpers.createAndPublishTx(server, txOpts, TestData.copayers[0].privKey_1H_0, function(tx) {
             setTimeout(function() {

@@ -347,10 +347,13 @@ describe('Push notifications', function() {
     it('should notify copayers a tx has been finally rejected', function(done) {
       helpers.stubUtxos(server, wallet, 1, function() {
         var txOpts = {
-          outputs: [{
-            address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
-            amount: 0.8e8
-          }]
+          app: 'payment',
+          params: {
+            outputs: [{
+              address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
+              amount: 0.8e8
+            }]
+          }
         };
 
         var txpId;
@@ -390,10 +393,13 @@ describe('Push notifications', function() {
     it('should notify copayers a new outgoing tx has been created', function(done) {
       helpers.stubUtxos(server, wallet, 1, function() {
         var txOpts = {
-          outputs: [{
-            address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
-            amount: 0.8e8
-          }]
+          app: 'payment',
+          params: {
+            outputs: [{
+              address: '4MEMP3JRUCKEQ2ELT2GQCK2L4X6YQQWU',
+              amount: 0.8e8
+            }]
+          }
         };
 
         var txp;
@@ -496,7 +502,8 @@ describe('Push notifications', function() {
           xPubKey: TestData.copayers[i].xPubKey_44H_0H_0H,
           requestPubKey: TestData.copayers[i].pubKey_1H_0,
           customData: 'custom data ' + (i + 1),
-          devicePubKey: dxpri.privateKey.toPublicKey()
+          devicePubKey: dxpri.privateKey.toPublicKey(),
+          account: 0
         });
 
         server.joinWallet(copayerOpts, function(err, res) {
