@@ -96,6 +96,7 @@ describe('Push notifications', function() {
           // Simulate incoming tx notification
           server._notify('NewIncomingTx', {
             txid: '999',
+            asset: null,
             address: address,
             amount: 123000,
           }, {
@@ -109,7 +110,7 @@ describe('Push notifications', function() {
               calls.length.should.equal(1);
               args[0].body.notification.title.should.contain('New payment received');
               args[0].body.notification.body.should.contain('123,000');
-              args[0].body.notification.body.should.contain('bytes');
+              args[0].body.notification.body.should.contain('BYTES');
               done();
             }, 1000);
           });
@@ -124,7 +125,8 @@ describe('Push notifications', function() {
         // Simulate incoming tx notification
         server._notify('NewIncomingTx', {
           txid: '999',
-          address: address,
+          asset: null,
+          address: address.address,
           amount: 12300000,
         }, {
           isGlobal: false
@@ -145,7 +147,8 @@ describe('Push notifications', function() {
         // Simulate incoming tx notification
         server._notify('NewIncomingTx', {
           txid: '999',
-          address: address,
+          asset: null,
+          address: address.address,
           amount: 12300000,
         }, {
           isGlobal: true
@@ -250,7 +253,8 @@ describe('Push notifications', function() {
           // Simulate incoming tx notification
           server._notify('NewIncomingTx', {
             txid: '999',
-            address: address,
+            asset: null,
+            address: address.address,
             amount: 12300000,
           }, {
             isGlobal: true
@@ -285,7 +289,8 @@ describe('Push notifications', function() {
         // Simulate incoming tx notification
         server._notify('NewIncomingTx', {
           txid: '999',
-          address: address,
+          asset: null,
+          address: address.address,
           amount: 12300000,
         }, {
           isGlobal: true
@@ -307,7 +312,8 @@ describe('Push notifications', function() {
         // Simulate incoming tx notification
         server._notify('NewIncomingTx', {
           txid: '999',
-          address: address,
+          asset: null,
+          address: address.address,
           amount: 12300000,
         }, {
           isGlobal: false
@@ -328,7 +334,8 @@ describe('Push notifications', function() {
           should.not.exist(err);
           server._notify('NewTxProposal', {
             txid: '999',
-            address: address,
+            asset: null,
+            address: address.address,
             amount: 12300000,
           }, {
             isGlobal: false

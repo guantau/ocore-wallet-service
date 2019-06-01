@@ -82,7 +82,8 @@ describe('Email notifications', function() {
         // Simulate incoming tx notification
         server._notify('NewIncomingTx', {
           txid: '999',
-          address: address,
+          asset: null,
+          address: address.address,
           amount: 221340,
         }, function(err) {
           setTimeout(function() {
@@ -367,7 +368,8 @@ describe('Email notifications', function() {
         // Simulate incoming tx notification
         server._notify('NewIncomingTx', {
           txid: '999',
-          address: address,
+          asset: null,
+          address: address.address,
           amount: 13000,
         }, function(err) {
           setTimeout(function() {
@@ -398,7 +400,8 @@ describe('Email notifications', function() {
         // Simulate incoming tx notification
         server._notify('NewIncomingTx', {
           txid: '999',
-          address: address,
+          asset: null,
+          address: address.address,
           amount: 12300000,
         }, function(err) {
           setTimeout(function() {
@@ -464,7 +467,8 @@ describe('Email notifications', function() {
           // Simulate incoming tx notification
           server._notify('NewIncomingTx', {
             txid: '999',
-            address: address,
+            asset: null,
+            address: address.address,
             amount: 12300000,
           }, function(err) {
             setTimeout(function() {
@@ -502,7 +506,8 @@ describe('Email notifications', function() {
           // Simulate incoming tx notification
           server._notify('NewIncomingTx', {
             txid: '999',
-            address: address,
+            asset: null,
+            address: address.address,
             amount: 12300000,
           }, function(err) {
             setTimeout(function() {
@@ -584,7 +589,8 @@ describe('Email notifications', function() {
         // Simulate incoming tx notification
         server._notify('NewIncomingTx', {
           txid: '999',
-          address: address,
+          asset: null,
+          address: address.address,
           amount: 12300000,
         }, function(err) {
           setTimeout(function() {

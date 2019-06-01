@@ -82,51 +82,51 @@ describe('Utils', function() {
   describe('#formatAmount', function() {
     it('should successfully format amount', function() {
       var cases = [{
-        args: [1, 'one'],
-        expected: '1',
+        args: [1, null, 'one'],
+        expected: '1 BYTES',
       }, {
-        args: [1, 'giga'],
-        expected: '0.00',
+        args: [1, null, 'giga'],
+        expected: '0.00 GB',
       }, {
-        args: [0, 'one'],
-        expected: '0',
+        args: [0, null, 'one'],
+        expected: '0 BYTES',
       }, {
-        args: [12345678, 'one'],
-        expected: '12,345,678',
+        args: [12345678, null, 'one'],
+        expected: '12,345,678 BYTES',
       }, {
-        args: [12345678, 'giga'],
-        expected: '0.0123457',
+        args: [12345678, null, 'giga'],
+        expected: '0.0123457 GB',
       }, {
-        args: [12345611, 'giga'],
-        expected: '0.0123456',
+        args: [12345611, null, 'giga'],
+        expected: '0.0123456 GB',
       }, {
-        args: [1234, 'giga'],
-        expected: '0.0000012',
+        args: [1234, null, 'giga'],
+        expected: '0.0000012 GB',
       }, {
-        args: [1299, 'giga'],
-        expected: '0.0000013',
+        args: [1299, null, 'giga'],
+        expected: '0.0000013 GB',
       }, {
-        args: [129900000, 'giga'],
-        expected: '0.1299',
+        args: [129900000, null, 'giga'],
+        expected: '0.1299 GB',
       }, {
-        args: [1234567899999, 'giga'],
-        expected: '1,234.5679',
+        args: [1234567899999, null, 'giga'],
+        expected: '1,234.5679 GB',
       }, {
-        args: [12345678, 'one', {
+        args: [12345678, null, 'one', {
           thousandsSeparator: '.'
         }],
-        expected: '12.345.678',
+        expected: '12.345.678 BYTES',
       }, {
-        args: [12345678, 'giga', {
+        args: [12345678, null, 'giga', {
           decimalSeparator: ','
         }],
-        expected: '0,0123457',
+        expected: '0,0123457 GB',
       }, {
-        args: [1234567899999, 'giga', {
+        args: [1234567899999, null, 'giga', {
           thousandsSeparator: ' ',
           decimalSeparator: ','
         }],
-        expected: '1 234,5679',
+        expected: '1 234,5679 GB',
       }, ];
 
       _.each(cases, function(testCase) {
