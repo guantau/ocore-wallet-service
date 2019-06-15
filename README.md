@@ -1,12 +1,11 @@
 
-# ocore-wallet-service
+# Ocore-Wallet-Service (OWS)
 
-
-A Multisig HD Ocore Wallet Service.
+A Multisig HD OByte Light Wallet Service.
 
 # Description
 
-Ocore Wallet Service facilitates multisig HD wallets creation and operation through a (hopefully) simple and intuitive REST API.
+OWS facilitates multisig HD wallets creation and operation through a simple and intuitive REST API.
 
 OWS can usually be installed within minutes and accommodates all the needed infrastructure for peers in a multisig wallet to communicate and operate – with minimum server trust.
   
@@ -60,9 +59,6 @@ OWS can be used with PM2 with the provided `app.js` script:
   // CAinter2: '', // ex. 'COMODORSAAddTrustCA.crt'
   // CAroot: '', // ex. 'AddTrustExternalCARoot.crt'
 ```
-
-@dabura667 made a report about how to use letsencrypt: https://github.com/bitpay/bitcore-wallet-service/issues/423
-  
 
 # TX proposal life cycle
 

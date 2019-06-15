@@ -5,9 +5,9 @@ Ensure MongoDB (2.6+) is installed and running. This document assumes that mongo
 See the configuration section to configure a different host/port.
 
 ### Install OWS from NPM
-Use the following steps to Install OWS from the npmjs repository and run it with defaults.
+Use the following steps to Install OWS from NPM.
 ```bash
-npm install ocore-wallet-service
+npm install https://github.com/guantau/ocore-wallet-service
 cd ocore-wallet-service
 ```
 To change configuration before running, see the Configuration section.
@@ -28,13 +28,15 @@ npm start
 ```
 
 ### Configuration
-Configuration for all required modules can be specified in https://github.com/guantau/ocore-wallet-service/blob/master/config.js
+Configuration for all required modules of OWS can be specified in https://github.com/guantau/ocore-wallet-service/blob/master/config.js. 
 
-OWS is composed of 4 separate node services -
-Message Broker - messagebroker/messagebroker.js
-Blockchain Monitor - bcmonitor/bcmonitor.js (This service talks to the Blockchain Explorer service.)
-Email Service - emailservice/emailservice.js
-Ocore Wallet Service - ows.js
+OWS is composed of 6 separate node services:
++ Message Broker - messagebroker/messagebroker.js
++ OByte Monitor - bcmonitor/bcmonitor.js (This service talks to OByte.)
++ Email Service - emailservice/emailservice.js
++ Fiat Rate Service - fiatrateservice/fiatservice.js
++ Push Notifications Service - pushnotificationsservice/pushnotificationsservice.js
++ OByte Wallet Service - ows.js
 
 #### Configure MongoDB
 Example configuration for connecting to the MongoDB instance:

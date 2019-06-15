@@ -2,5 +2,5 @@
 "use strict";
 var check_daemon = require('ocore/check_daemon.js');
 
-check_daemon.checkDaemonAndRestart('node bcmonitor/bcmonitor.js');
+check_daemon.checkDaemonAndRestart('node bcmonitor.js');
 
