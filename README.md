@@ -333,6 +333,7 @@ Required Arguments:
     - params.change_address: Use this address as the change address for the tx. The address should belong to the wallet. In the case of singleAddress wallets, the first main address will be used.
     - params.send_all: Send maximum amount of bytes. (defaults to false).
     - params.spend_unconfirmed: UTXOs of unconfirmed transactions as inputs. (defaults to 'own', others include 'all', 'none')
+    - payload: Extra messages to sent.
 
  * app: data - One can store arbitrary structured data using 'data' message type.
     - params: Structured data of key-value  
