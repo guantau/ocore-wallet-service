@@ -49,19 +49,16 @@ var config = {
   // emailOpts: {
   //  host: 'localhost',
   //  port: 25,
-  //  ignoreTLS: true,
+  //  secure: false,
+  //  auth: {
+  //   user: process.env.SMTP_USER,
+  //   pass: process.env.SMTP_PASS
+  //  },
   //  subjectPrefix: '[Wallet Service]',
-  //  from: 'wallet-service@bitcore.io',
+  //  from: 'wallet-service@ocore.io',
   //  templatePath: './lib/templates',
   //  defaultLanguage: 'en',
   //  defaultUnit: 'one',
   // },
-  // To use sendgrid:
-  // const sgMail = require('@sendgrid/mail');
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  //
-  //
-  // //then add:
-  // mailer: sgMail,
 };
 module.exports = config;

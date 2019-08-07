@@ -64,7 +64,7 @@ Example configuration for connecting to email service (using postfix):
   emailOpts: {
     host: 'localhost',
     port: 25,
-    ignoreTLS: true,
+    secure: false,
     subjectPrefix: '[Wallet Service]',
     from: 'wallet-service@ocore.io',
   }
