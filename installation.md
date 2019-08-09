@@ -27,6 +27,25 @@ To change configuration before running, see the Configuration section.
 npm start
 ```
 
+### Testnet
+To run OWS in OByte Testnet, you need to modify `package.json` before the command `npm install`.
+
+Find the line 
+```json
+"ocore": "git+https://github.com/byteball/ocore.git"
+```
+and change it to
+```json
+"ocore": "git+https://github.com/byteball/ocore.git#rocks-and-formulas"
+```
+
+Then run the command
+```bash
+export testnet=true
+npm install
+npm start
+```
+
 ### Configuration
 Configuration for all required modules of OWS can be specified in https://github.com/guantau/ocore-wallet-service/blob/master/config.js. 
 
