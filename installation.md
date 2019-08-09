@@ -30,7 +30,7 @@ npm start
 ### Testnet
 To run OWS in OByte Testnet, you need to modify `package.json` before the command `npm install`.
 
-Find the line 
+Find the line in `package.json`
 ```json
 "ocore": "git+https://github.com/byteball/ocore.git"
 ```
@@ -42,6 +42,13 @@ and change it to
 Then run the command
 ```bash
 export testnet=true
+npm install
+npm start
+```
+
+Or you can checkout the branch `testnet`:
+```bash
+git checkout testnet
 npm install
 npm start
 ```
