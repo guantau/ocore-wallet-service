@@ -37,7 +37,7 @@
     "nodemailer": "^6.3.0",
     "npmlog": "^0.1.1",
     "obyte": "^0.1.4",
-    "ocore": "git+https://github.com/byteball/ocore.git",
+    "ocore": "git+https://github.com/byteball/ocore.git#rocks-and-formulas",
     "preconditions": "^2.2.1",
     "read": "^1.0.5",
     "request": "^2.53.0",
