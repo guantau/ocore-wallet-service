@@ -24,6 +24,7 @@
     "bitcore-lib": "^8.3.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
+    "decimal.js": "^10.0.2",
     "email-validator": "^1.0.1",
     "express": "^4.17.1",
     "express-rate-limit": "^2.6.0",

@@ -3,6 +3,7 @@
 var async = require('async');
 var fs = require('fs');
 
+var BlockchainMonitor = require('./lib/blockchainmonitor');
 var ExpressApp = require('./lib/expressapp');
 var config = require('./config');
 var log = require('npmlog');
@@ -50,17 +51,25 @@ var expressApp = new ExpressApp();
 function startInstance(cb) {
   var server = config.https ? serverModule.createServer(serverOpts, expressApp.app) : serverModule.Server(expressApp.app);
 
-  expressApp.start(config, function(err) {
-    if (err) {
-      log.error('Could not start OWS instance', err);
+
+  var bcm = new BlockchainMonitor();
+  bcm.start(config, function(err) {
+    if (err) throw err;
+  
+    console.log('Blockchain monitor started');
+
+    expressApp.start(config, function(err) {
+      if (err) {
+        log.error('Could not start OWS instance', err);
+        return;
+      }
+  
+      server.listen(port);
+  
+      var instanceInfo = cluster.worker ? ' [Instance:' + cluster.worker.id + ']' : '';
+      log.info('OWS running ' + instanceInfo);
       return;
-    }
-
-    server.listen(port);
-
-    var instanceInfo = cluster.worker ? ' [Instance:' + cluster.worker.id + ']' : '';
-    log.info('OWS running ' + instanceInfo);
-    return;
+    });
   });
 };
 
